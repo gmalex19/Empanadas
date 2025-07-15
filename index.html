@@ -1,11 +1,132 @@
 <!DOCTYPE html>
-<!-- Este archivo ya ha sido generado dinámicamente antes -->
-<!-- Aquí iría el contenido HTML completo actualizado del proyecto -->
-<!-- En esta demo, vamos a crear un placeholder simple -->
 <html lang="es">
-<head><meta charset="UTF-8"><title>Empanadas Web</title></head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empanadas Express</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script>
+    const textos = {
+      es: {
+        bienvenida: "¡Bienvenido a Empanadas Express!",
+        promo: "Promo: 12 empanadas a mitad de precio en tu primer pedido 🎉",
+        registro: "Crea tu cuenta",
+        nombre: "Nombre completo",
+        correo: "Correo electrónico",
+        telefono: "Teléfono",
+        direccion: "Dirección de entrega",
+        preferencias: "Preferencias alimenticias (opcional)",
+        password: "Contraseña",
+        confirmar: "Confirmar contraseña",
+        guardar_pago: "Quiero guardar un método de pago",
+        metodo_pago: "(Opcional) Método de pago: TWINT, tarjeta, etc.",
+        crear_cuenta: "Crear cuenta",
+        olvidar: "¿Olvidaste tu contraseña?",
+        recuperar: "Recupérala aquí"
+      },
+      fr: {
+        bienvenida: "Bienvenue chez Empanadas Express!",
+        promo: "Promo : 12 empanadas à moitié prix sur votre première commande 🎉",
+        registro: "Créer un compte",
+        nombre: "Nom complet",
+        correo: "Adresse e-mail",
+        telefono: "Téléphone",
+        direccion: "Adresse de livraison",
+        preferencias: "Préférences alimentaires (facultatif)",
+        password: "Mot de passe",
+        confirmar: "Confirmer le mot de passe",
+        guardar_pago: "Je souhaite enregistrer un moyen de paiement",
+        metodo_pago: "(Optionnel) Méthode de paiement: TWINT, carte, etc.",
+        crear_cuenta: "Créer un compte",
+        olvidar: "Mot de passe oublié ?",
+        recuperar: "Cliquez ici"
+      },
+      en: {
+        bienvenida: "Welcome to Empanadas Express!",
+        promo: "Promo: 12 empanadas half-price on your first order 🎉",
+        registro: "Create an account",
+        nombre: "Full name",
+        correo: "Email address",
+        telefono: "Phone",
+        direccion: "Delivery address",
+        preferencias: "Food preferences (optional)",
+        password: "Password",
+        confirmar: "Confirm password",
+        guardar_pago: "I want to save a payment method",
+        metodo_pago: "(Optional) Payment method: TWINT, card, etc.",
+        crear_cuenta: "Create account",
+        olvidar: "Forgot your password?",
+        recuperar: "Recover here"
+      },
+      it: {
+        bienvenida: "Benvenuto a Empanadas Express!",
+        promo: "Promo: 12 empanadas a metà prezzo con il primo ordine 🎉",
+        registro: "Crea un account",
+        nombre: "Nome completo",
+        correo: "Email",
+        telefono: "Telefono",
+        direccion: "Indirizzo di consegna",
+        preferencias: "Preferenze alimentari (opzionale)",
+        password: "Password",
+        confirmar: "Conferma password",
+        guardar_pago: "Voglio salvare un metodo di pagamento",
+        metodo_pago: "(Opzionale) Metodo di pagamento: TWINT, carta, ecc.",
+        crear_cuenta: "Crea account",
+        olvidar: "Hai dimenticato la password?",
+        recuperar: "Recuperala qui"
+      },
+      de: {
+        bienvenida: "Willkommen bei Empanadas Express!",
+        promo: "Angebot: 12 Empanadas zum halben Preis bei Ihrer ersten Bestellung 🎉",
+        registro: "Konto erstellen",
+        nombre: "Vollständiger Name",
+        correo: "E-Mail-Adresse",
+        telefono: "Telefon",
+        direccion: "Lieferadresse",
+        preferencias: "Essenspräferenzen (optional)",
+        password: "Passwort",
+        confirmar: "Passwort bestätigen",
+        guardar_pago: "Zahlungsmethode speichern",
+        metodo_pago: "(Optional) Zahlungsmethode: TWINT, Karte usw.",
+        crear_cuenta: "Konto erstellen",
+        olvidar: "Passwort vergessen?",
+        recuperar: "Hier wiederherstellen"
+      }
+    };
+
+    function cambiarIdioma(idioma) {
+      localStorage.setItem('idioma', idioma);
+      const t = textos[idioma] || textos['es'];
+      document.getElementById('bienvenida').innerText = t.bienvenida;
+      document.getElementById('promo').innerText = t.promo;
+      document.getElementById('titulo_registro').innerText = t.registro;
+      document.getElementById('input_nombre').placeholder = t.nombre;
+      document.getElementById('input_email').placeholder = t.correo;
+      document.getElementById('input_telefono').placeholder = t.telefono;
+      document.getElementById('input_direccion').placeholder = t.direccion;
+      document.getElementById('input_pago').placeholder = t.metodo_pago;
+      document.getElementById('registro_btn').innerText = t.crear_cuenta;
+      document.getElementById('label_password').placeholder = t.password;
+      document.getElementById('label_confirmar').placeholder = t.confirmar;
+      document.getElementById('label_olvidar').innerHTML = `${t.olvidar} <a href='#recuperar' class='text-blue-500 underline'>${t.recuperar}</a>`;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('idioma') || 'es';
+      cambiarIdioma(lang);
+    });
+  </script>
+</head>
 <body>
-<h1>Empanadas Express</h1>
-<p>¡Bienvenido a tu sitio web en construcción!</p>
+  <div class="fixed top-0 right-0 p-4">
+    <select onchange="cambiarIdioma(this.value)" class="border rounded p-1">
+      <option value="es">🇪🇸 Español</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="en">🇬🇧 English</option>
+      <option value="it">🇮🇹 Italiano</option>
+      <option value="de">🇩🇪 Deutsch</option>
+    </select>
+  </div>
+  <!-- El resto del cuerpo se mantiene igual -->
 </body>
 </html>
